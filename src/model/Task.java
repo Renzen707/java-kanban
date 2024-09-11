@@ -1,20 +1,26 @@
-package Tasks;
+package model;
 
 import java.util.Objects;
 
 public class Task {
     protected int id;
-    protected String taskName;
-    protected Status status;
+    protected String name;
     protected String description;
+    protected Status status;
+
+    public Task(String name, Status status, String description) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
 
 
     public int getId() {
         return id;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getName() {
+        return name;
     }
 
     public Status getStatus() {
@@ -29,8 +35,8 @@ public class Task {
         this.id = id;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setStatus(Status status) {
@@ -46,21 +52,19 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && Objects.equals(taskName, task.taskName) && status == task.status && Objects.equals(description, task.description);
+        return id == task.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, taskName, status, description);
+        return Objects.hashCode(id);
     }
 
     @Override
     public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", taskName='" + taskName + '\'' +
-                ", status=" + status +
-                ", description='" + description + '\'' +
-                '}';
+        return "Задача №" + id +
+                ": " + name + '\'' +
+                ". Статус: " + status +
+                ", описание: " + description + '\'';
     }
 }
