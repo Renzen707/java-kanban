@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Objects;
-
 public class Task {
     protected int id;
     protected String name;
