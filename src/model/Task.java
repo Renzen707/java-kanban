@@ -14,10 +14,6 @@ public class Task {
 
     }
 
-    public Epic getEpic(){
-        return null;
-    }
-
     public int getId() {
         return id;
     }
@@ -35,6 +31,7 @@ public class Task {
     }
 
     public Status getStatus() {
+
         return status;
     }
 
@@ -72,3 +69,4 @@ public class Task {
                 '}';
     }
 }
+

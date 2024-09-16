@@ -15,19 +15,9 @@ public class Epic extends Task{
     }
 
     public void addTask(SubTask subTask){
-
-    }
-
-    public void removeTask(SubTask subTask){
-
-    }
-
-    public void removeAllTask(){
-        subTasks.clear();
     }
 
     public void calculateEpicStatus(){
-
     }
 
 

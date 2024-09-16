@@ -21,6 +21,8 @@ public class TaskService {
 
     public TaskService(){
         this.tasks = new HashMap<>();
+        this.epics = new HashMap<>();
+        this.subTasks = new HashMap<>();
     }
 
     public Task create (Task task) {
@@ -32,7 +34,8 @@ public class TaskService {
     public Epic create (Epic epic) {
         Epic epic1 = new Epic(epic.getName(), Status.NEW, epic.getDescription());
         epic1.setId(generateId());
-        epics.put(epic.getId(), epic);
+        epics.put(epic1.getId(), epic);
+
         return epic;
     }
 
@@ -49,6 +52,9 @@ public class TaskService {
     public void updateTask (Task task){
         tasks.put(task.getId(), task);
         Task saved = tasks.get(task.getId());
+        if (saved == null){
+            return;
+        }
         saved.setName(task.getName());
         saved.setStatus(task.getStatus());
     }
