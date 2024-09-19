@@ -8,11 +8,10 @@ import java.util.List;
 
 
 public class TaskService {
-    public int taskCount;
 
-    private HashMap<Integer, Task> tasks = new HashMap<>();
-    HashMap<Integer, Epic> epics;
-    HashMap<Integer, SubTask> subTasks;
+    private HashMap<Integer, Task> tasks;
+    private HashMap<Integer, Epic> epics;
+    private HashMap<Integer, SubTask> subTasks;
     int seq = 0;
 
     private int generateId(){
@@ -43,7 +42,7 @@ public class TaskService {
         subTask.setId(generateId());
         subTasks.put(subTask.getId(), subTask);
 
-        Epic epic = epics.get(subTask.getEpic().getId());
+        Epic epic = epics.get(subTask.getEpicId());
         epic.addTask(subTask);
         calculateStatus(epic);
         return subTask;
@@ -57,6 +56,8 @@ public class TaskService {
         }
         saved.setName(task.getName());
         saved.setStatus(task.getStatus());
+        saved.setDescription(task.getDescription());
+        saved.setId(task.getId());
     }
 
     public void updateEpic (Epic epic){
@@ -69,12 +70,11 @@ public class TaskService {
     }
 
     public void updateSubTask (SubTask subTask){
-        Epic epic = subTask.getEpic();
-        Epic savedEpic = epics.get(epic.getId());
+        int epicId = subTask.getEpicId();
+        Epic savedEpic = epics.get(epicId);
         if (savedEpic == null){
             return;
         }
-        savedEpic.calculateEpicStatus();
     }
 
     public Task getTask(int id) {
@@ -112,8 +112,7 @@ public class TaskService {
     public void deleteSubTask(int id) {
         SubTask removeSubTask = subTasks.remove(id);
 
-        Epic epic = removeSubTask.getEpic();
-        Epic epicSaved = epics.get(epic.getId());
+        Epic epicSaved = epics.get(removeSubTask.getEpicId());
 
         epicSaved.getSubTasks().remove(removeSubTask);
 

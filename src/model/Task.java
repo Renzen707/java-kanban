@@ -1,10 +1,10 @@
 package model;
 
 public class Task {
-    protected int id;
-    protected String name;
-    protected Status status;
-    protected String description;
+    private int id;
+    private String name;
+    private Status status;
+    private String description;
 
 
     public Task(String name, Status status, String description) {
